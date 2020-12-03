@@ -2,12 +2,12 @@
 	include("db.php");
 	if(isset($_POST['criar'])){
 		$nome = $_POST['nome'];
-		$apelido = $_POST['apelido'];
 		$email = $_POST['email'];
+		$telefone = $_POST['telefone'];
 		$pass = $_POST['pass'];
 		$data = date("Y/m/d");
 
-		$sql = "select email from usuario where email = '$email' ";
+		$sql = "SELECT `email_usuario` FROM `usuario` WHERE `email_usuario`='$email' ";
 		$email_check = mysqli_query($connect, $sql);
 		$do_email_check = mysqli_num_rows($email_check);
 		if($do_email_check >= 1){
@@ -20,11 +20,14 @@
 		elseif ($email == '' or strlen($email) < 10){
 			echo '<h3> Escreve o teu email correctamente! </h3>';
 		}
-		elseif ($pass == '' or strlen($pass) < 8){
+		elseif ($pass == '' or strlen($pass) < 3){
 			echo '<h3> Escreve a tua password correctamente, deve ter mais de 8 caracteres! </h3>';
 		}else
 		{ 
-		$query = "insert into usuario values (0,'$nome','$apelido','$email','$pass','$data')";
+		$query = "INSERT INTO `usuario`(`codigo_usuario`, `nome_usuario`, `email_usuario`, 
+				`telefone_usuario`, `senha_usuario`, `data_cadastro_usuario`) 
+				VALUES (NULL,'$nome','$email','$telefone','$pass','$data')
+				";
 		$data = mysqli_query($connect,$query) or die("Erro ao inserir - mysqli_error()");
 		if ($data){
 			setcookie("login", $email);
@@ -77,9 +80,9 @@
 		<img src="imagens/licenciado.png"> <br />
 		<h2> Criar sua conta </h2>
 		<form method="post">  
-			<input type="text" placeholder="Primeiro nome" name="nome"> <br /> <br />
-			<input type="text" placeholder="Apelido" name="apelido"> <br /> <br />
+			<input type="text" placeholder="Nome" name="nome"> <br /> <br />
 			<input type="email" placeholder="Endereço email" name="email"> <br /><br />
+			<input type="text" placeholder="Telefone" name="telefone"> <br /> <br />
 			<input type="password" placeholder="Palavra-passe" name="pass"> <br /> <br />
  
 			<input type="submit" value="Guardar" name="criar">  

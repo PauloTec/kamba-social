@@ -2,10 +2,10 @@
 	include("db.php");
 
 		if(isset($_POST['entrar'])) {
-			$email = $_POST['email'];
+			$telefone = $_POST['telefone'];
 			$pass = $_POST['pass'];
 			
-			$sql = "select * from usuario where email = '$email' and password = '$pass' ";
+			$sql = "select * from usuario where telefone_usuario = '$telefone' and senha_usuario = '$pass' ";
 		
 			$verifica = mysqli_query($connect, $sql);
 
@@ -14,7 +14,7 @@
 			}
 			else{
 				setcookie("login", $email);
-				header("Location: ./");
+				header("Location: pagina_inicial.php");
 		}
 	}
 ?>
@@ -66,7 +66,7 @@
 	<body>
 		<h2> Entre na sua conta </h2>
 		<form method="POST">  
-			<input type="email" placeholder="endereco email" name="email" > <br /> <br />
+			<input type="text" placeholder="Telefone" name="telefone" > <br /> <br />
 			<input type="password" placeholder="Palavra-passe" name="pass"> <br /> <br /> 
 			<input type="submit" value="Entrar" name="entrar">  
 		</form>

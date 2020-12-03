@@ -18,9 +18,12 @@ Start Bootstrap is an open source library of free Bootstrap templates and themes
 
 ##Passos de implementação
 
-1º Login e Cadastro
-2º Página Inicial
-3º Meu perfil
+1º Landing page (index)
+2º Login e Cadastro
+	2.1º Base de Dados
+3º Página Inicial
+4º Meu perfil
+5º Perfil de outro usuário
 
 ## Copyright e Licença
 
